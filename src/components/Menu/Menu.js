@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import './Menu.css'
 
 export default class Menu extends React.Component {
 
@@ -8,8 +9,7 @@ export default class Menu extends React.Component {
 
         this.menuItems = [
             {link: "/", label: "Home"},
-            {link: "/account", label: "Account"},
-            {link: "/products", label: "Products"},
+            {link: "/account", label: "Account"}
         ]
     }
 

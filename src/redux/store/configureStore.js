@@ -4,11 +4,10 @@ import { routerMiddleware } from 'react-router-redux'
 import rootReducer from '../rootReducer'
 
 const configureStore = (initialState = {}, history) => {
-    let api = {}
     const store = createStore(
         rootReducer,
         compose(
-            applyMiddleware(thunk.withExtraArgument(api), routerMiddleware(history))
+            applyMiddleware(thunk)
         )
     )
 
@@ -18,9 +17,6 @@ const configureStore = (initialState = {}, history) => {
             store.replaceReducer(nextRootReducer)
         })
     }
-    
-    //Here add the services for the api like this:
-    //api.user = require('../services/UserService').apply(this, [store])
 
     return store
 }

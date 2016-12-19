@@ -1,0 +1,71 @@
+exports[`Account should render the page after the account is loaded 1`] = `
+<div
+  className="account">
+  <span
+    className="left-column">
+    <div
+      className="account-item">
+      <div
+        className="label">
+        Account holder:
+      </div>
+       
+      Fabio
+       
+      Salimbeni
+    </div>
+    <div
+      className="account-item">
+      <div
+        className="label">
+        Amount available in the account:
+      </div>
+       
+      $
+      1000000
+      <div
+        className="account-actions">
+        <button
+          className="topUp button"
+          disabled=""
+          onClick={[Function]}>
+          TOP UP $1000 ON ACCOUNT
+        </button>
+        <button
+          className="withdraw button"
+          disabled=""
+          onClick={[Function]}>
+          WITHDRAW $1000 FROM ACCOUNT
+        </button>
+      </div>
+    </div>
+    <div
+      className="account-item">
+      <div
+        className="label">
+        Account status:
+      </div>
+       
+      <span
+        className="active">
+        ENABLED
+      </span>
+    </div>
+    <button
+      className="toggleStatus button"
+      onClick={[Function]}>
+      DISABLE ACCOUNT
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Account should render the page while the account is loading 1`] = `
+<div
+  className="account">
+  <div
+    className="loader">
+    Account loading....
+  </div>
+</div>
+`;

@@ -1,0 +1,59 @@
+.account {
+    border: 1px solid #000;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: left;
+}
+
+.account .account-item {
+    margin: 10px 0;
+}
+
+.account .account-item .label {
+    color: grey;
+    font-size: 12px;
+    width: 100%;
+}
+
+.account .left-column {
+    width: 50%;
+}
+
+.account-actions {
+    float: right;
+}
+
+.account-actions button {
+    margin-left: 20px;
+    
+
+}
+
+.button {
+    color: #fff;
+    background-color: #000;
+    border: none;
+    padding: 5px;
+}
+
+@media (max-width: 1044px) {
+    .account-actions {
+        float: none;
+    }
+    .account-actions button {
+        margin-right: 20px;
+        margin-left: 0
+    }
+
+}
+
+@media (max-width: 768px) {
+    .account-actions button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+}

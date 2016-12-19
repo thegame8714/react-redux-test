@@ -1,0 +1,17 @@
+exports[`AccountActions should render the page 1`] = `
+<div
+  className="account-actions">
+  <button
+    className="topUp button"
+    disabled=""
+    onClick={[Function]}>
+    TOP UP $1000 ON ACCOUNT
+  </button>
+  <button
+    className="withdraw button"
+    disabled=""
+    onClick={[Function]}>
+    WITHDRAW $1000 FROM ACCOUNT
+  </button>
+</div>
+`;
