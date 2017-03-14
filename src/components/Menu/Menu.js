@@ -9,7 +9,8 @@ export default class Menu extends React.Component {
 
         this.menuItems = [
             {link: "/", label: "Home"},
-            {link: "/account", label: "Account"}
+            {link: "/account", label: "Account"},
+            {link: "/form", label: "Form"}
         ]
     }
 
