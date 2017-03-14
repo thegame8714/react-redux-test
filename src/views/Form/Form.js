@@ -1,54 +1,91 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import PasswordField from './PasswordField'
-// import { action as accountActions } from '../../redux/modules/account/actionCreators'
-// import AccountActions from '../../components/AccountActions/AccountActions'
+import MobilePhoneNumberInput from './MobilePhoneNumberInput'
+import MobilePhoneNumberSelect from './MobilePhoneNumberSelect'
+import DesktopPhoneNumberSelect from './DesktopPhoneNumberSelect'
+
 
 const validate = (values) => {
-    console.log(values)
+
     return {}
 }
 
 export class Form extends React.Component {
 
-    // static propTypes = {
-    //     retrieveAccountInfo: React.PropTypes.func,
-    //     topUpAccount: React.PropTypes.func,
-    //     withdrawAccount: React.PropTypes.func,
-    //     account: React.PropTypes.object,
-    //     isLoadingAccount: React.PropTypes.bool
-    // }
+    constructor(props) {
+        super(props)
+        this.state = { 
+            isMobile: window.innerWidth < 500
+        }
+    }
 
-    // componentDidMount() {
-    //     this.props.retrieveAccountInfo()
-    // }
+    componentDidMount() {
+        window.addEventListener("resize", this.isMobile.bind(this))
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.isMobile.bind(this))
+    }
 
-    // updateAccountStatus() {
-    //     this.props.toggleAccountStatus()
-    // }
-
-    // topUpAccount() {
-    //     this.props.topUpAccount()
-    // }
-
-    // withdrawAccount() {
-    //     this.props.withdrawAccount()
-    // }
-
-    render() {
-        // const {
-        //     account,
-        //     isLoadingAccount 
-        // } = this.props
+   isMobile() {
+    this.setState({
+        isMobile: window.innerWidth < 500
+    })  
+   }
+    render() { 
+        
+        const {
+            selectedCountryCode,
+            currentPhoneNumber
+        } = this.props
 
         return (
            <form>
             <Field
-                type="password"
-                name="password"
-                component={PasswordField} 
+                name="phoneCountryCode"
+                component={this.state.isMobile ? MobilePhoneNumberSelect : DesktopPhoneNumberSelect} 
+                countries={[
+                    {
+                        name: 'Italy',
+                        dialCode: '+39',
+                        isoCode: 'it'
+                    },
+                    {
+                        name: 'United Kingdom',
+                        dialCode: '+44',
+                        isoCode: 'en'
+                    },
+                    {
+                        name: 'United States of America',
+                        dialCode: '+1',
+                        isoCode: 'us'
+                    },
+                ]}
+                selectedCountryCode={selectedCountryCode}
             /> 
+            <Field
+                name="phoneNumber"
+                component={MobilePhoneNumberInput}               
+                selectedCountryCode={selectedCountryCode}
+                currentPhoneNumber={currentPhoneNumber}
+                countries={[
+                    {
+                        name: 'Italy',
+                        dialCode: '+39',
+                        isoCode: 'it'
+                    },
+                    {
+                        name: 'United Kingdom',
+                        dialCode: '+44',
+                        isoCode: 'en'
+                    },
+                    {
+                        name: 'United States of America',
+                        dialCode: '+1',
+                        isoCode: 'us'
+                    },
+                ]}
+             />
            </form>
         )
     }
@@ -60,10 +97,19 @@ const form = reduxForm({
     validate
 })(Form)
 
-function mapStateToProps(state) {
-    return {
+const mapStateToProps = (state) => {
+    let phoneCountryCode = ''
+    let phoneNumber = ''
+    if ('TestForm' in state.form) {
+        if ('values' in state.form.TestForm) {
+            phoneCountryCode = state.form.TestForm.values.phoneCountryCode
+            phoneNumber = state.form.TestForm.values.phoneNumber
+        }
     }
-}
+    return {
+        selectedCountryCode: phoneCountryCode,
+        currentPhoneNumber: phoneNumber
+    }
+} 
 
-export default connect(mapStateToProps, {
-})(form)
+export default connect(mapStateToProps, {})(form)
